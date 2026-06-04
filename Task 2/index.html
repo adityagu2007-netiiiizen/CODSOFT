@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aditya Gupta — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a1a;
+      --fg: #e8e4dd;
+      --muted: #94a3b8;
+      --orange: #e85d3a;
+      --highlight: #c9a84c;
+      --border: 3px solid #e8e4dd;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    .font-display { font-family: 'Archivo Black', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    .brutal-border { border: var(--border); }
+    .brutal-shadow { box-shadow: 6px 6px 0 0 var(--fg); }
+    .brutal-shadow-sm { box-shadow: 3px 3px 0 0 var(--fg); }
+
+    /* Header */
+    header {
+      border-bottom: var(--border);
+      background: var(--bg);
+      position: sticky; top: 0; z-index: 50;
+    }
+    header .container {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 16px; padding-bottom: 16px;
+    }
+    header nav { display: none; gap: 32px; font-size: 14px; text-transform: uppercase; }
+    header nav a { color: var(--fg); text-decoration: none; transition: color 0.2s; }
+    header nav a:hover { color: var(--orange); }
+    .btn-hire {
+      border: var(--border); box-shadow: 3px 3px 0 0 var(--fg);
+      background: var(--fg); color: var(--bg);
+      padding: 8px 16px; font-size: 14px; text-transform: uppercase;
+      text-decoration: none; font-family: 'JetBrains Mono', monospace;
+      transition: all 0.15s;
+    }
+    .btn-hire:hover { transform: translate(2px, 2px); box-shadow: none; }
+
+    @media (min-width: 768px) { header nav { display: flex; } }
+
+    /* Hero */
+    .hero {
+      position: relative; overflow: hidden;
+      border-bottom: var(--border); padding: 80px 0;
+    }
+    .hero .badge {
+      font-size: 14px; text-transform: uppercase;
+      background: var(--fg); color: var(--bg);
+      padding: 4px 12px; display: inline-block; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 10vw, 120px); line-height: 0.85; text-transform: uppercase;
+    }
+    .hero h1 .bg-orange {
+      background: var(--orange); color: var(--bg); padding: 0 12px; display: inline-block; margin: 8px 0;
+    }
+    .hero p { margin-top: 32px; max-width: 600px; font-size: 18px; color: var(--muted); }
+    .hero-btns { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px; }
+    .hero-btns a {
+      border: var(--border); text-decoration: none; font-weight: 700;
+      font-size: 14px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;
+      padding: 12px 24px; display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.15s;
+    }
+    .btn-primary { background: var(--orange); color: var(--bg); box-shadow: 6px 6px 0 0 var(--fg); }
+    .btn-primary:hover { transform: translate(3px, 3px); box-shadow: none; }
+    .btn-secondary { background: var(--bg); color: var(--fg); box-shadow: 6px 6px 0 0 var(--fg); }
+    .btn-secondary:hover { transform: translate(3px, 3px); box-shadow: none; }
+
+    .hero .shape1 {
+      position: absolute; top: 40px; right: 40px;
+      width: 160px; height: 160px; background: var(--highlight);
+      border: var(--border); transform: rotate(12deg); display: none;
+    }
+    .hero .shape2 {
+      position: absolute; bottom: 80px; right: 160px;
+      width: 96px; height: 96px; background: var(--orange);
+      border: var(--border); transform: rotate(-6deg); display: none;
+    }
+    @media (min-width: 768px) {
+      .hero { padding: 128px 0; }
+      .hero .shape1, .hero .shape2 { display: block; }
+    }
+
+    /* Marquee */
+    .marquee {
+      background: var(--fg); color: var(--bg);
+      border-bottom: var(--border); padding: 16px 0; overflow: hidden;
+    }
+    .marquee-inner {
+      display: flex; gap: 48px; font-size: 24px; text-transform: uppercase;
+      white-space: nowrap; animation: scroll 25s linear infinite;
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* Sections */
+    section { border-bottom: var(--border); padding: 80px 0; }
+    .section-label {
+      font-size: 14px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
+    }
+    h2 { font-size: clamp(40px, 6vw, 72px); line-height: 0.95; text-transform: uppercase; }
+
+    /* About */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr; gap: 48px; margin-top: 48px;
+    }
+    .about-grid p { font-size: 18px; margin-bottom: 24px; }
+    .about-grid .muted { color: var(--muted); }
+    .status-box {
+      border: var(--border); background: var(--highlight); padding: 24px;
+      box-shadow: 6px 6px 0 0 var(--fg); display: inline-block;
+    }
+    @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* Skills */
+    .skills-wrap { background: #141432; }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 48px; }
+    .skill-tag {
+      border: var(--border); padding: 12px 20px; font-size: 14px; text-transform: uppercase;
+      font-weight: 700; font-family: 'JetBrains Mono', monospace; box-shadow: 3px 3px 0 0 var(--fg);
+    }
+    .skill-tag.orange { background: var(--orange); color: var(--bg); }
+    .skill-tag.highlight { background: var(--highlight); color: var(--bg); }
+    .skill-tag.bg { background: var(--bg); }
+
+    /* Projects */
+    .projects-header {
+      display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+      gap: 16px; margin-bottom: 48px;
+    }
+    .project-grid {
+      display: grid; grid-template-columns: 1fr; gap: 24px;
+    }
+    .project-card {
+      border: var(--border); box-shadow: 6px 6px 0 0 var(--fg); background: var(--bg);
+      text-decoration: none; color: var(--fg); display: block;
+      transition: all 0.15s;
+    }
+    .project-card:hover { transform: translate(4px, 4px); box-shadow: none; }
+    .project-thumb {
+      aspect-ratio: 4/3; border-bottom: var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 80px; color: var(--bg);
+    }
+    .project-thumb.o { background: var(--orange); }
+    .project-thumb.h { background: var(--highlight); }
+    .project-thumb.f { background: var(--fg); color: var(--bg); }
+    .project-body { padding: 24px; }
+    .project-body h3 { font-size: 24px; text-transform: uppercase; margin-bottom: 8px; }
+    .project-meta {
+      font-size: 12px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+    }
+    @media (min-width: 768px) { .project-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    /* Contact */
+    .contact { background: var(--fg); color: var(--bg); border-bottom: none; }
+    .contact h2 span { color: var(--orange); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 48px;
+    }
+    .contact-card {
+      border: var(--border); border-color: var(--bg); background: var(--bg); color: var(--fg);
+      padding: 24px; text-decoration: none; transition: all 0.2s;
+    }
+    .contact-card:hover { background: var(--orange); color: var(--bg); }
+    .contact-card .label {
+      font-size: 12px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+    }
+    .contact-card:hover .label { color: rgba(10,10,26,0.7); }
+    .contact-card .value {
+      font-size: 20px; font-family: 'Archivo Black', sans-serif; word-break: break-all;
+    }
+    @media (min-width: 768px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    /* Footer */
+    footer {
+      border-top: var(--border); background: var(--fg); color: var(--bg); padding: 24px 0;
+    }
+    footer .container {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; font-size: 12px; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="#" class="font-display" style="font-size:20px;letter-spacing:-0.02em;text-decoration:none;color:var(--fg);">AG</a>
+      <nav class="font-mono">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn-hire">Hire me</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="shape1"></div>
+    <div class="shape2"></div>
+    <div class="container">
+      <div class="badge font-mono">▸ Available for work</div>
+      <h1 class="font-display">
+        I build<br />
+        <span class="bg-orange">bold</span><br />
+        web things.
+      </h1>
+      <p>Hi, I'm Aditya — a B.Tech CS student building loud, fast, and functional sites. Always learning, always shipping.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">See projects <span style="font-size:18px;">↗</span></a>
+        <a href="#about" class="btn-secondary">About me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee-inner font-display">
+      <span>Code with intent ★</span>
+      <span>Ship fast ★</span>
+      <span>Make it loud ★</span>
+      <span>Code with intent ★</span>
+      <span>Ship fast ★</span>
+      <span>Make it loud ★</span>
+      <span>Code with intent ★</span>
+      <span>Ship fast ★</span>
+      <span>Make it loud ★</span>
+      <span>Code with intent ★</span>
+      <span>Ship fast ★</span>
+      <span>Make it loud ★</span>
+      <span>Code with intent ★</span>
+      <span>Ship fast ★</span>
+      <span>Make it loud ★</span>
+      <span>Code with intent ★</span>
+      <span>Ship fast ★</span>
+      <span>Make it loud ★</span>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="section-label font-mono">// 01 — About</div>
+          <h2 class="font-display">
+            First-year<br />B.Tech <span style="color:var(--orange);">CS</span><br />student.
+          </h2>
+        </div>
+        <div>
+          <p>I am a first-year B.Tech Computer Science student with a strong interest in technology, web development, and problem-solving. I enjoy learning new concepts, building projects, and exploring how technology can be used to create meaningful solutions.</p>
+          <p class="muted">As a Front-End Developer and technology enthusiast, I am continuously improving my skills in programming and web development through hands-on projects and practical learning. I believe in consistency, creativity, and teamwork, and I am always eager to take on new challenges that help me grow both personally and professionally.</p>
+          <p class="muted">My goal is to become a skilled software developer and contribute to innovative projects that create a positive impact.</p>
+          <div class="status-box">
+            <div class="font-mono" style="font-size:12px;text-transform:uppercase;margin-bottom:4px;">Status</div>
+            <div class="font-display" style="font-size:24px;">Open to opportunities</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="skills-wrap">
+    <div class="container">
+      <div class="section-label font-mono">// 02 — Skills</div>
+      <h2 class="font-display">The toolkit</h2>
+      <div class="skills-grid">
+        <span class="skill-tag orange">HTML</span>
+        <span class="skill-tag highlight">C program</span>
+        <span class="skill-tag bg">Python</span>
+        <span class="skill-tag orange">DSA</span>
+        <span class="skill-tag highlight">Public speaking</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="projects-header">
+        <div>
+          <div class="section-label font-mono">// 03 — Projects</div>
+          <h2 class="font-display">Selected work</h2>
+        </div>
+        <div class="font-mono" style="font-size:14px;text-transform:uppercase;">3 projects · 2026</div>
+      </div>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-thumb o font-display">01</div>
+          <div class="project-body">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <h3 class="font-display">College Hostel Lifestyle</h3>
+              <span style="font-size:20px;">↗</span>
+            </div>
+            <div class="project-meta font-mono">HTML · CSS · JS</div>
+            <p>A website showcasing college hostel life with event listings, photo gallery, and student resources.</p>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-thumb h font-display">02</div>
+          <div class="project-body">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <h3 class="font-display">Budget Tracker</h3>
+              <span style="font-size:20px;">↗</span>
+            </div>
+            <div class="project-meta font-mono">JS · Local Storage</div>
+            <p>A simple yet powerful expense tracker that helps you monitor income, spending, and savings goals.</p>
+          </div>
+        </article>
+        <a href="https://adityagu2007-netiiiizen.github.io/CODSOFT/" target="_blank" rel="noopener noreferrer" class="project-card">
+          <div class="project-thumb f font-display">03</div>
+          <div class="project-body">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <h3 class="font-display">Portfolio</h3>
+              <span style="font-size:20px;">↗</span>
+            </div>
+            <div class="project-meta font-mono">React · Tailwind</div>
+            <p>This very portfolio — built loud with brutalist design to showcase projects and skills.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-label font-mono" style="color:rgba(10,10,26,0.6);">// 04 — Contact</div>
+      <h2 class="font-display">
+        Let's build<br />
+        <span>something loud.</span>
+      </h2>
+      <div class="contact-grid">
+        <a href="mailto:adityagu2007@gmail.com" class="contact-card">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="label font-mono">Email</div>
+          <div class="value">adityagu2007@gmail.com</div>
+        </a>
+        <a href="https://github.com/adityagu2007-netiiiizen" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <div class="label font-mono">GitHub</div>
+          <div class="value">@adityagu2007-netiiiizen</div>
+        </a>
+        <a href="https://www.linkedin.com/in/aditya-gupta-a87063392?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <div class="label font-mono">LinkedIn</div>
+          <div class="value">/in/aditya-gupta</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div>© 2026 — Built loud with HTML + CSS</div>
+      <div>v1.0 · brutalist edition</div>
+    </div>
+  </footer>
+
+</body>
+</html>
