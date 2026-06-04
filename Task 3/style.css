@@ -1,0 +1,303 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0d1117,
+        #1a1f2e,
+        #2a2f45
+    );
+
+    transition:0.4s;
+    overflow:hidden;
+    padding:20px;
+}
+
+/* Background Glow */
+
+body::before{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#5f5cff;
+    border-radius:50%;
+    filter:blur(160px);
+    top:-100px;
+    left:-100px;
+    opacity:0.3;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    background:#22d3ee;
+    border-radius:50%;
+    filter:blur(160px);
+    bottom:-100px;
+    right:-100px;
+    opacity:0.2;
+}
+
+/* Layout */
+
+.wrapper{
+    display:flex;
+    gap:30px;
+    align-items:flex-start;
+    z-index:2;
+}
+
+/* Calculator */
+
+.calculator{
+    width:360px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(
+        255,255,255,0.08
+    );
+
+    backdrop-filter:
+    blur(18px);
+
+    border-radius:35px;
+
+    padding:25px;
+
+    box-shadow:
+    0 10px 40px
+    rgba(0,0,0,0.4);
+}
+
+/* Top Icons */
+
+.top-icons{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.icon-btn{
+    background:transparent;
+    border:none;
+    color:#8ea0ff;
+    font-size:25px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.icon-btn:hover{
+    transform:scale(1.2);
+    color:#22d3ee;
+}
+
+/* Display */
+
+#display{
+    width:100%;
+    height:90px;
+    border:none;
+    outline:none;
+
+    border-radius:22px;
+
+    background:
+    rgba(255,255,255,0.06);
+
+    color:white;
+
+    font-size:3rem;
+    text-align:right;
+
+    padding:20px;
+    margin-bottom:25px;
+}
+
+/* Buttons */
+
+.buttons{
+    display:grid;
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
+}
+
+button{
+    height:72px;
+    border:none;
+    border-radius:22px;
+
+    background:#1f2434;
+
+    color:white;
+    font-size:1.5rem;
+
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 0 20px
+    rgba(99,102,241,0.4);
+}
+
+.operator{
+    background:
+    linear-gradient(
+        135deg,
+        #4f46e5,
+        #6366f1
+    );
+}
+
+.equal{
+    grid-column:span 2;
+
+    background:
+    linear-gradient(
+        135deg,
+        #00c6a7,
+        #22d3ee
+    );
+
+    font-weight:bold;
+}
+
+/* Credit */
+
+.credit{
+    text-align:center;
+    margin-top:25px;
+    color:#9ca3af;
+    font-size:14px;
+}
+
+.credit span{
+    color:#22d3ee;
+    font-weight:bold;
+}
+
+/* History Panel */
+
+.history-panel{
+    width:280px;
+    min-height:500px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border-radius:30px;
+    padding:20px;
+
+    backdrop-filter:
+    blur(20px);
+
+    display:none;
+
+    border:
+    1px solid rgba(
+        255,255,255,0.08
+    );
+}
+
+.history-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    color:#22d3ee;
+    margin-bottom:20px;
+}
+
+.history-header button{
+    width:50px;
+    height:50px;
+    border-radius:15px;
+}
+
+.history-item{
+    background:
+    rgba(255,255,255,0.05);
+
+    padding:15px;
+
+    border-radius:18px;
+
+    margin-bottom:15px;
+
+    color:white;
+}
+
+.history-item p{
+    color:#9ca3af;
+    margin-bottom:8px;
+}
+
+.show-history{
+    display:block;
+}
+
+/* Light Mode */
+
+.light-mode{
+    background:
+    linear-gradient(
+        135deg,
+        #dbeafe,
+        #e0f2fe,
+        #f8fafc
+    );
+}
+
+.light-mode .calculator,
+.light-mode .history-panel{
+    background:
+    rgba(255,255,255,0.7);
+}
+
+.light-mode #display{
+    background:#f1f5f9;
+    color:#111827;
+}
+
+.light-mode button{
+    background:#e2e8f0;
+    color:#111827;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+    .wrapper{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .history-panel{
+        width:100%;
+        max-width:360px;
+    }
+}
